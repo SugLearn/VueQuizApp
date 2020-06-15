@@ -1,15 +1,16 @@
 <template>
 <div class="container">
+  <h1 id="header">Quiz Questions</h1>
   <b-jumbotron>
-  
+
     <template v-slot:lead>
       {{ currentQues.question }}
     </template>
 
     <hr class="my-4">
     <b-list-group>
-      <b-list-group-item  v-for="(answer,index) in shuffledAnswers" :key="index" 
-      @click="selectAns(index)" 
+      <b-list-group-item  v-for="(answer,index) in shuffledAnswers" :key="index"
+      @click="selectAns(index)"
       :class="answerClass(index)">
         {{ answer }}
       </b-list-group-item>
@@ -69,11 +70,11 @@ export default {
       this.increment(isCorrect)
     },
     shuffleAnswers(){
-      let answers = [...this.currentQues.incorrect_answers,this.currentQues.correct_answer]
+      let answers = [...this.currentQues.incorrect_answers, this.currentQues.correct_answer]
       this.shuffledAnswers = _.shuffle(answers)
-       this.correctIndex = this.shuffledAnswers.indexOf(this.currentQues.correct_answer)
+      this.correctIndex = this.shuffledAnswers.indexOf(this.currentQues.correct_answer)
     },
-    
+
     answerClass(index) {
       let answerClass = ''
       if (!this.answered && this.selectedIndex === index) {
